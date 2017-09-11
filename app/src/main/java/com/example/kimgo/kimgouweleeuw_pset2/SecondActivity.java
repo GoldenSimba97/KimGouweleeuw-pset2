@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 
 public class SecondActivity extends AppCompatActivity {
 
@@ -13,8 +14,12 @@ public class SecondActivity extends AppCompatActivity {
         setContentView(R.layout.activity_second);
     }
 
-    public void goToFirst(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
+    public void goToNext(View view) {
+        EditText edittext = (EditText) findViewById(R.id.editText);
+        String text = edittext.getText().toString();
+
+        Intent intent = new Intent(this, ThirdActivity.class);
+        intent.putExtra("ourString", text);
         startActivity(intent);
         finish();
     }

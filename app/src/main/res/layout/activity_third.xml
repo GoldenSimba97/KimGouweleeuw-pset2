@@ -8,18 +8,18 @@
     android:orientation="vertical"
     tools:context="com.example.kimgo.kimgouweleeuw_pset2.MainActivity">
 
-    <EditText
-        android:id="@+id/editText"
+    <TextView
+        android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
         android:text="" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/anotherstory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/ok"
-        android:onClick="goToNext" />
+        android:text="@string/anotherstory"
+        android:onClick="goToFirst" />
+
+
 </LinearLayout>
