@@ -14,10 +14,11 @@ public class ThirdActivity extends AppCompatActivity {
         setContentView(R.layout.activity_third);
 
         Intent intent = getIntent();
-        String recievedText = intent.getStringExtra("ourString");
+//        String recievedText = intent.getStringExtra("ourStory");
 
+        Story story = (Story) getIntent().getExtras().getSerializable("ourStory");
         TextView textView = (TextView) findViewById(R.id.textView);
-        textView.setText(recievedText);
+        textView.setText(story.toString());
     }
 
     public void goToFirst(View view) {

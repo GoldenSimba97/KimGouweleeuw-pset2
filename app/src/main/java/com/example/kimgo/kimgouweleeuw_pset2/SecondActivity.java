@@ -6,32 +6,54 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
+import android.widget.TextView;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.Random;
-import java.util.Scanner;
 
 public class SecondActivity extends AppCompatActivity {
+
+    private Story story;
+    private EditText editWord;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
 
+
         try {
             getStory();
+//            if (story != null) {
+//                fillInStory();
+//            }
         } catch (IOException e) {
             e.printStackTrace();
         }
+        editWord = (EditText) findViewById(R.id.edit);
+//        Toast.makeText(getApplicationContext(),"1",Toast.LENGTH_SHORT).show();
+//        EditText editText = (EditText) findViewById(R.id.edit);
+//        story.fillInPlaceholder(editText.getText().toString());
+        if (story != null) {
+            editWord.setText(story.getNextPlaceholder());
+        }
     }
+
+//    private void fillInStory() {
+//        String place = story.getNextPlaceholder();
+//        EditText edittext = (EditText) findViewById(R.id.edit);
+////        edittext.setText(place);
+//
+//        story.fillInPlaceholder(edittext.getText().toString());
+//
+////        EditText edittext = (EditText) findViewById(R.id.editText);
+////        String text = edittext.getText().toString();
+//
+////        TextView textView = (TextView) findViewById(R.id.textView2);
+////        textView.setText(place);
+//
+//    }
 
 
 
@@ -41,52 +63,59 @@ public class SecondActivity extends AppCompatActivity {
         int storyNumber = r.nextInt(5);
 
         switch (storyNumber) {
-            case(0): {
+            case(0):
                 stream = getAssets().open("madlib0_simple.txt", AssetManager.ACCESS_UNKNOWN);
                 break;
-            }
-            case(1): {
+            case(1):
                 stream = getAssets().open("madlib1_tarzan.txt", AssetManager.ACCESS_UNKNOWN);
                 break;
-            }
-            case(2): {
+            case(2):
                 stream = getAssets().open("madlib2_university.txt", AssetManager.ACCESS_UNKNOWN);
                 break;
-            }
-            case(3): {
+            case(3):
                 stream = getAssets().open("madlib3_clothes.txt", AssetManager.ACCESS_UNKNOWN);
                 break;
-            }
-            case(4): {
+            case(4):
                 stream = getAssets().open("madlib4_dance.txt", AssetManager.ACCESS_UNKNOWN);
                 break;
-            }
         }
-        Story story = new Story(stream);
+        story = new Story(stream);
     }
 
-
-
-
-    public void goToNext(View view) {
-        EditText edittext = (EditText) findViewById(R.id.editText);
-        String text = edittext.getText().toString();
-
-
-
+    public void goToStory(View view) throws IOException {
         Intent intent = new Intent(this, ThirdActivity.class);
-        intent.putExtra("ourString", text);
+        Bundle bundle = new Bundle();
+
+        bundle.putSerializable("ourStory", story);
+        intent.putExtras(bundle);
+
         startActivity(intent);
         finish();
     }
 
-    public void printText(View view) {
-//        String content = null;
-//        try {
-//            content = new Scanner(new File("madlib0_simple.txt")).useDelimiter("\\Z").next();
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
+
+
+    public void goToNext(View view) throws IOException {
+//        if (!story.isFilledIn()) {
+//            fillInStory();
+//        } else {
+////            EditText edittext = (EditText) findViewById(R.id.editText);
+////            String text = edittext.getText().toString();
+//
+//            Intent intent = new Intent(this, ThirdActivity.class);
+//            Bundle bundle = new Bundle();
+//            bundle.putSerializable("ourStory", story);
+//            intent.putExtras(bundle);
+//            startActivity(intent);
+//            finish();
 //        }
-        Toast.makeText(getApplicationContext(),"hallo",Toast.LENGTH_SHORT).show();
+//        EditText editText = (EditText) findViewById(R.id.edit);
+        story.fillInPlaceholder(editWord.getText().toString());
+        editWord.setText(story.getNextPlaceholder());
+
+        if (story.isFilledIn()) {
+            goToStory(view);
+        }
     }
+
 }
