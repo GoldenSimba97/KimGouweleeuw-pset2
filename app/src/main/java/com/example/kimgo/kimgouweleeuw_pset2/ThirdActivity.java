@@ -17,7 +17,7 @@ public class ThirdActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_third);
 
-        Intent intent = getIntent();
+//        Intent intent = getIntent();
 //        String recievedText = intent.getStringExtra("ourStory");
 
         Story story = (Story) getIntent().getExtras().getSerializable("ourStory");

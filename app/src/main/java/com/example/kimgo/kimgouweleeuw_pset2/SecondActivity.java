@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,6 +25,10 @@ public class SecondActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
+
+        Intent intent = getIntent();
+        int selectedStory = intent.getIntExtra("selected", 0);
+        Toast.makeText(getApplicationContext(),selectedStory,Toast.LENGTH_SHORT).show();
 
         try {
             getStory();
