@@ -1,6 +1,7 @@
 package com.example.kimgo.kimgouweleeuw_pset2;
 
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +16,7 @@ import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Random;
 import java.util.Scanner;
 
 public class SecondActivity extends AppCompatActivity {
@@ -24,84 +26,44 @@ public class SecondActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
 
-        Scanner scanner = null;
-        String text = null;
         try {
-            scanner = new Scanner( new File("madlib0_simple.txt") );
-        } catch (FileNotFoundException e) {
+            getStory();
+        } catch (IOException e) {
             e.printStackTrace();
         }
-        if (scanner != null) {
-            text = scanner.useDelimiter("\\A").next();
-        }
-        scanner.close();
-        Toast.makeText(getApplicationContext(),text,Toast.LENGTH_SHORT).show();
-
-
-//        InputStream targetStream = null;
-//        throws IOException {
-//            File initialFile = new File("src/main/resources/values/madlib0_simple.txt");
-//            try {
-//                targetStream = new FileInputStream(initialFile);
-//            } catch (FileNotFoundException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//        Story story = new Story(targetStream);
-//        String text = toString();
-//        System.out.println(text);
-
-//        String content = null;
-//        try {
-//            content = new Scanner(new File("madlib0_simple.txt")).useDelimiter("\\Z").next();
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        }
-
-//        try(BufferedReader br = new BufferedReader(new FileReader("madlib0_simple.txt"))) {
-//            StringBuilder sb = new StringBuilder();
-//            String line = br.readLine();
-//
-//            while (line != null) {
-//                sb.append(line);
-//                sb.append(System.lineSeparator());
-//                line = br.readLine();
-//            }
-//            content = sb.toString();
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
-//        System.out.println(content);
-//        System.out.println(content);
-//
-//        InputStream stream = null;
-//        if (content != null) {
-//            stream = new ByteArrayInputStream(content.getBytes());
-//        }
-//
-//        Story story = new Story(stream);
-//        String text = toString();
-//        System.out.println(text);
     }
 
 
-//    public void toInputStream() throws IOException {
-//        InputStream targetStream = null;
-//        File initialFile = new File("src/main/resources/values/madlib0_simple.txt");
-//        try {
-//            targetStream = new FileInputStream(initialFile);
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        }
-//        Story story = new Story(targetStream);
-//        String text = toString();
-//        System.out.println(text);
-//    }
 
+    private void getStory() throws IOException {
+        InputStream stream = null;
+        Random r = new Random();
+        int storyNumber = r.nextInt(5);
 
+        switch (storyNumber) {
+            case(0): {
+                stream = getAssets().open("madlib0_simple.txt", AssetManager.ACCESS_UNKNOWN);
+                break;
+            }
+            case(1): {
+                stream = getAssets().open("madlib1_tarzan.txt", AssetManager.ACCESS_UNKNOWN);
+                break;
+            }
+            case(2): {
+                stream = getAssets().open("madlib2_university.txt", AssetManager.ACCESS_UNKNOWN);
+                break;
+            }
+            case(3): {
+                stream = getAssets().open("madlib3_clothes.txt", AssetManager.ACCESS_UNKNOWN);
+                break;
+            }
+            case(4): {
+                stream = getAssets().open("madlib4_dance.txt", AssetManager.ACCESS_UNKNOWN);
+                break;
+            }
+        }
+        Story story = new Story(stream);
+    }
 
 
 
