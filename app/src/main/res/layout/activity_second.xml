@@ -28,6 +28,6 @@
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Please type a/an " />
+        android:text="" />
 
 </LinearLayout>

@@ -15,6 +15,8 @@ import java.util.Random;
 public class SecondActivity extends AppCompatActivity {
 
     private Story story;
+    private EditText editPlace;
+    private TextView textPlace;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,8 +29,11 @@ public class SecondActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        EditText editText = (EditText) findViewById(R.id.edit);
-        editText.setText(story.getNextPlaceholder());
+        editPlace = (EditText) findViewById(R.id.edit);
+        textPlace = (TextView) findViewById(R.id.textView2);
+
+        editPlace.setText(story.getNextPlaceholder());
+        textPlace.setText(story.getNextPlaceholder());
     }
 
 
@@ -71,28 +76,13 @@ public class SecondActivity extends AppCompatActivity {
 
 
     public void goToNext(View view) throws IOException {
-        EditText editText = (EditText) findViewById(R.id.edit);
-        story.fillInPlaceholder(editText.getText().toString());
-        editText.setText(story.getNextPlaceholder());
+        story.fillInPlaceholder(editPlace.getText().toString());
+        editPlace.setText(story.getNextPlaceholder());
+        textPlace.setText(story.getNextPlaceholder());
 
         if (story.isFilledIn()) {
             goToStory(view);
         }
     }
-
-    //    private void fillInStory() {
-//        String place = story.getNextPlaceholder();
-//        EditText edittext = (EditText) findViewById(R.id.edit);
-////        edittext.setText(place);
-//
-//        story.fillInPlaceholder(edittext.getText().toString());
-//
-////        EditText edittext = (EditText) findViewById(R.id.editText);
-////        String text = edittext.getText().toString();
-//
-////        TextView textView = (TextView) findViewById(R.id.textView2);
-////        textView.setText(place);
-//
-//    }
 
 }
