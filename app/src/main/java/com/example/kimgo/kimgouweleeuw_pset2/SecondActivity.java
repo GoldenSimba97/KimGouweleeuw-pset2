@@ -18,6 +18,7 @@ public class SecondActivity extends AppCompatActivity {
     private Story story;
     private EditText editPlace;
     private TextView textPlace;
+    private TextView wordCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,10 +33,15 @@ public class SecondActivity extends AppCompatActivity {
 
         editPlace = (EditText) findViewById(R.id.edit);
         textPlace = (TextView) findViewById(R.id.textView2);
+        wordCount = (TextView) findViewById(R.id.textView3);
 
         editPlace.setHint(story.getNextPlaceholder());
 
         Resources res = getResources();
+
+        String count = res.getString(R.string.nwords, story.getPlaceholderRemainingCount());
+        wordCount.setText(count);
+
         String text = res.getString(R.string.placeholder, story.getNextPlaceholder());
         textPlace.setText(text);
     }
@@ -83,7 +89,14 @@ public class SecondActivity extends AppCompatActivity {
         story.fillInPlaceholder(editPlace.getText().toString());
         editPlace.setText("");
         editPlace.setHint(story.getNextPlaceholder());
-        textPlace.setText(story.getNextPlaceholder());
+
+        Resources res = getResources();
+
+        String count = res.getString(R.string.nwords, story.getPlaceholderRemainingCount());
+        wordCount.setText(count);
+        
+        String text = res.getString(R.string.placeholder, story.getNextPlaceholder());
+        textPlace.setText(text);
 
         if (story.isFilledIn()) {
             goToStory(view);
