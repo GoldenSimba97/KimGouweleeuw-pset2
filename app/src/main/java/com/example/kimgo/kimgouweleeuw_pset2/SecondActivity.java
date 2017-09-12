@@ -26,14 +26,24 @@ public class SecondActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
 
-        Intent intent = getIntent();
-        int selectedStory = intent.getIntExtra("selected", 0);
-        Toast.makeText(getApplicationContext(),selectedStory,Toast.LENGTH_SHORT).show();
+        int selectedStory = 10;
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            selectedStory = extras.getInt("selected");
+        }
 
-        try {
-            getStory();
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (selectedStory != 10) {
+            try {
+                choosestory(selectedStory);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            try {
+                getStory();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
         editPlace = (EditText) findViewById(R.id.edit);
@@ -51,6 +61,27 @@ public class SecondActivity extends AppCompatActivity {
         textPlace.setText(text);
     }
 
+    private void choosestory(int selectedStory) throws IOException {
+        InputStream stream = null;
+        switch (selectedStory) {
+            case(0):
+                stream = getAssets().open("madlib0_simple.txt", AssetManager.ACCESS_UNKNOWN);
+                break;
+            case(1):
+                stream = getAssets().open("madlib1_tarzan.txt", AssetManager.ACCESS_UNKNOWN);
+                break;
+            case(2):
+                stream = getAssets().open("madlib2_university.txt", AssetManager.ACCESS_UNKNOWN);
+                break;
+            case(3):
+                stream = getAssets().open("madlib3_clothes.txt", AssetManager.ACCESS_UNKNOWN);
+                break;
+            case(4):
+                stream = getAssets().open("madlib4_dance.txt", AssetManager.ACCESS_UNKNOWN);
+                break;
+        }
+        story = new Story(stream);
+    }
 
     private void getStory() throws IOException {
         InputStream stream = null;

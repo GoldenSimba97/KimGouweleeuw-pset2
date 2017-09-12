@@ -4,11 +4,9 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.PopupMenu;
-import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-//import android.widget.PopupMenu;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,56 +28,42 @@ public class MainActivity extends AppCompatActivity {
         popup.show();
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        MenuInflater inflater = getMenuInflater();
-//        inflater.inflate(R.menu.actions, menu);
-//        return true;
-//    }
-
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle item selection
-//        switch (item.getItemId()) {
-//            case R.id.simple:
-//                Intent intent = new Intent(this, SecondActivity.class);
-//                intent.putExtra("selected", 0);
-//                startActivity(intent);
-//                return true;
-////                break;
-//            case R.id.tarzan:
-//                Intent intent2 = new Intent(this, SecondActivity.class);
-//                intent2.putExtra("selected", 1);
-//                startActivity(intent2);
-//                return true;
-////                break;
-////            case R.id.uni:
-////
-////                return true;
-////            case R.id.clothes:
-////
-////                return true;
-////            case R.id.dance:
-////
-////                return true;
-//            default:
-//                return super.onOptionsItemSelected(item);
-//        }
-//    }
-
     public void chooseStory(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.simple:
                 Intent intent = new Intent(this, SecondActivity.class);
-                intent.putExtra("selected", 0);
+                int simple = 0;
+                intent.putExtra("selected", simple);
                 startActivity(intent);
-//                return true;
+                finish();
                 break;
             case R.id.tarzan:
+                Intent intent1 = new Intent(this, SecondActivity.class);
+                int tarzan = 1;
+                intent1.putExtra("selected", tarzan);
+                startActivity(intent1);
+                finish();
+                break;
+            case R.id.uni:
                 Intent intent2 = new Intent(this, SecondActivity.class);
-                intent2.putExtra("selected", 1);
+                int uni = 2;
+                intent2.putExtra("selected", uni);
                 startActivity(intent2);
-//                return true;
+                finish();
+                break;
+            case R.id.clothes:
+                Intent intent3 = new Intent(this, SecondActivity.class);
+                int clothes = 3;
+                intent3.putExtra("selected", clothes);
+                startActivity(intent3);
+                finish();
+                break;
+            case R.id.dance:
+                Intent intent4 = new Intent(this, SecondActivity.class);
+                int dance = 4;
+                intent4.putExtra("selected", dance);
+                startActivity(intent4);
+                finish();
                 break;
         }
     }

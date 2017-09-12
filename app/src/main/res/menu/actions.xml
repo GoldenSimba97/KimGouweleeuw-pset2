@@ -10,11 +10,14 @@
         android:onClick="chooseStory" />
     <item
         android:id="@+id/uni"
-        android:title="@string/uni"/>
+        android:title="@string/uni"
+        android:onClick="chooseStory" />
     <item
         android:id="@+id/clothes"
-        android:title="@string/clothes"/>
+        android:title="@string/clothes"
+        android:onClick="chooseStory" />
     <item
         android:id="@+id/dance"
-        android:title="@string/dance"/>
+        android:title="@string/dance"
+        android:onClick="chooseStory" />
 </menu>
