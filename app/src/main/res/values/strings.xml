@@ -4,5 +4,5 @@
     <string name="getstarted">Get started</string>
     <string name="madlibs">Madlibs</string>
     <string name="ok">OK</string>
-    <string name="placeholder">Please type a/an </string>
+    <string name="placeholder">Please type a/an %1$s</string>
 </resources>

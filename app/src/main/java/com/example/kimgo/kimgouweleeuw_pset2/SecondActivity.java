@@ -2,6 +2,7 @@ package com.example.kimgo.kimgouweleeuw_pset2;
 
 import android.content.Intent;
 import android.content.res.AssetManager;
+import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -33,7 +34,10 @@ public class SecondActivity extends AppCompatActivity {
         textPlace = (TextView) findViewById(R.id.textView2);
 
         editPlace.setText(story.getNextPlaceholder());
-        textPlace.setText(story.getNextPlaceholder());
+
+        Resources res = getResources();
+        String text = res.getString(R.string.placeholder, story.getNextPlaceholder());
+        textPlace.setText(text);
     }
 
 
