@@ -94,7 +94,7 @@ public class SecondActivity extends AppCompatActivity {
 
         String count = res.getString(R.string.nwords, story.getPlaceholderRemainingCount());
         wordCount.setText(count);
-        
+
         String text = res.getString(R.string.placeholder, story.getNextPlaceholder());
         textPlace.setText(text);
 
