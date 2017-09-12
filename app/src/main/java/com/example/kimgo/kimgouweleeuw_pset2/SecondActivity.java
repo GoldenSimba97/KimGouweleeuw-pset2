@@ -33,7 +33,7 @@ public class SecondActivity extends AppCompatActivity {
         editPlace = (EditText) findViewById(R.id.edit);
         textPlace = (TextView) findViewById(R.id.textView2);
 
-        editPlace.setText(story.getNextPlaceholder());
+        editPlace.setHint(story.getNextPlaceholder());
 
         Resources res = getResources();
         String text = res.getString(R.string.placeholder, story.getNextPlaceholder());
@@ -81,7 +81,8 @@ public class SecondActivity extends AppCompatActivity {
 
     public void goToNext(View view) throws IOException {
         story.fillInPlaceholder(editPlace.getText().toString());
-        editPlace.setText(story.getNextPlaceholder());
+        editPlace.setText("");
+        editPlace.setHint(story.getNextPlaceholder());
         textPlace.setText(story.getNextPlaceholder());
 
         if (story.isFilledIn()) {
