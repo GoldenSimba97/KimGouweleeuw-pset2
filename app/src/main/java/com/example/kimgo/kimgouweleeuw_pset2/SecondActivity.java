@@ -15,46 +15,21 @@ import java.util.Random;
 public class SecondActivity extends AppCompatActivity {
 
     private Story story;
-    private EditText editWord;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
 
-
         try {
             getStory();
-//            if (story != null) {
-//                fillInStory();
-//            }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        editWord = (EditText) findViewById(R.id.edit);
-//        Toast.makeText(getApplicationContext(),"1",Toast.LENGTH_SHORT).show();
-//        EditText editText = (EditText) findViewById(R.id.edit);
-//        story.fillInPlaceholder(editText.getText().toString());
-        if (story != null) {
-            editWord.setText(story.getNextPlaceholder());
-        }
+
+        EditText editText = (EditText) findViewById(R.id.edit);
+        editText.setText(story.getNextPlaceholder());
     }
-
-//    private void fillInStory() {
-//        String place = story.getNextPlaceholder();
-//        EditText edittext = (EditText) findViewById(R.id.edit);
-////        edittext.setText(place);
-//
-//        story.fillInPlaceholder(edittext.getText().toString());
-//
-////        EditText edittext = (EditText) findViewById(R.id.editText);
-////        String text = edittext.getText().toString();
-//
-////        TextView textView = (TextView) findViewById(R.id.textView2);
-////        textView.setText(place);
-//
-//    }
-
 
 
     private void getStory() throws IOException {
@@ -82,6 +57,7 @@ public class SecondActivity extends AppCompatActivity {
         story = new Story(stream);
     }
 
+
     public void goToStory(View view) throws IOException {
         Intent intent = new Intent(this, ThirdActivity.class);
         Bundle bundle = new Bundle();
@@ -94,28 +70,29 @@ public class SecondActivity extends AppCompatActivity {
     }
 
 
-
     public void goToNext(View view) throws IOException {
-//        if (!story.isFilledIn()) {
-//            fillInStory();
-//        } else {
-////            EditText edittext = (EditText) findViewById(R.id.editText);
-////            String text = edittext.getText().toString();
-//
-//            Intent intent = new Intent(this, ThirdActivity.class);
-//            Bundle bundle = new Bundle();
-//            bundle.putSerializable("ourStory", story);
-//            intent.putExtras(bundle);
-//            startActivity(intent);
-//            finish();
-//        }
-//        EditText editText = (EditText) findViewById(R.id.edit);
-        story.fillInPlaceholder(editWord.getText().toString());
-        editWord.setText(story.getNextPlaceholder());
+        EditText editText = (EditText) findViewById(R.id.edit);
+        story.fillInPlaceholder(editText.getText().toString());
+        editText.setText(story.getNextPlaceholder());
 
         if (story.isFilledIn()) {
             goToStory(view);
         }
     }
+
+    //    private void fillInStory() {
+//        String place = story.getNextPlaceholder();
+//        EditText edittext = (EditText) findViewById(R.id.edit);
+////        edittext.setText(place);
+//
+//        story.fillInPlaceholder(edittext.getText().toString());
+//
+////        EditText edittext = (EditText) findViewById(R.id.editText);
+////        String text = edittext.getText().toString();
+//
+////        TextView textView = (TextView) findViewById(R.id.textView2);
+////        textView.setText(place);
+//
+//    }
 
 }
