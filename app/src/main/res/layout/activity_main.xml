@@ -31,4 +31,11 @@
         android:text="@string/getstarted"
         android:onClick="goToNext" />
 
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/choose"
+        android:onClick="showPopUp"/>
+
 </LinearLayout>

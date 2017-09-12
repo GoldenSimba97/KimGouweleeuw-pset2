@@ -6,4 +6,10 @@
     <string name="ok">OK</string>
     <string name="placeholder">Please type a/an %1$s</string>
     <string name="nwords">%1$d word(s) left</string>
+    <string name="choose">Choose a story</string>
+    <string name="simple">Simple</string>
+    <string name="tarzan">Tarzan</string>
+    <string name="uni">University</string>
+    <string name="clothes">Clothes</string>
+    <string name="dance">Dance</string>
 </resources>
