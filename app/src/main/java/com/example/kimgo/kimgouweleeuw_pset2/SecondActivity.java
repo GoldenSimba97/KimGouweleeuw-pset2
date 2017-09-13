@@ -61,6 +61,46 @@ public class SecondActivity extends AppCompatActivity {
         textPlace.setText(text);
     }
 
+    /* Create bundle when onSaveInstanceState is called */
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        int count = story.getPlaceholderRemainingCount();
+        String placeholder = story.getNextPlaceholder();
+        outState.putInt("count",count);
+        outState.putString("placeholder", placeholder);
+
+//        Bundle bundle = new Bundle();
+//        bundle.putSerializable("story", story);
+//        outState.putBundle("story", bundle);
+        outState.putSerializable("story", story);
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle inState) {
+        super.onRestoreInstanceState(inState);
+
+        int counter = inState.getInt("count",-1);
+        String placeholder = inState.getString("placeholder");
+
+        Resources res = getResources();
+
+        editPlace.setHint(placeholder);
+
+        String count = res.getString(R.string.nwords, counter);
+        wordCount.setText(count);
+
+        String text = res.getString(R.string.placeholder, placeholder);
+        textPlace.setText(text);
+
+//        Bundle bundle = inState.getBundle("story");
+//        Story story = (Story) inState.getSerializable("story");
+        inState.getSerializable("story");
+    }
+
+
+
     private void choosestory(int selectedStory) throws IOException {
         InputStream stream = null;
         switch (selectedStory) {
