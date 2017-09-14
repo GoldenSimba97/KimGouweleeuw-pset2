@@ -11,6 +11,7 @@ import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
+    /* A different layout is used for this start screen depending on the orientation. */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,11 +27,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /* When the button is clicked it will navigate to the screen where the placeholders for
+     * the story will be filled in. */
     public void goToNext(View view) {
         Intent intent = new Intent(this, SecondActivity.class);
         startActivity(intent);
     }
 
+    /* Creates a popup menu so the user is able to choose the story. */
     public void showPopUp(View view) {
         PopupMenu popup = new PopupMenu(this, view);
         MenuInflater inflater = popup.getMenuInflater();
@@ -38,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
         popup.show();
     }
 
+    /* Passes the selected story on to the screen where the placeholders for the story will be
+     * filled in. */
     public void chooseStory(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.simple:

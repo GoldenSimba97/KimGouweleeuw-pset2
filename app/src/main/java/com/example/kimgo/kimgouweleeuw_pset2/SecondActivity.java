@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -21,6 +20,8 @@ public class SecondActivity extends AppCompatActivity {
     private TextView textPlace;
     private TextView wordCount;
 
+    /* Either loads the selected story or selects a story at random. The user will be asked to
+     * fill in the correct placeholder and is also shown how many words still need to be filled. */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +62,7 @@ public class SecondActivity extends AppCompatActivity {
         textPlace.setText(text);
     }
 
-    /* Create bundle when onSaveInstanceState is called */
+    /* Create bundle when onSaveInstanceState is called. */
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -71,12 +72,10 @@ public class SecondActivity extends AppCompatActivity {
         outState.putInt("count",count);
         outState.putString("placeholder", placeholder);
 
-//        Bundle bundle = new Bundle();
-//        bundle.putSerializable("story", story);
-//        outState.putBundle("story", bundle);
         outState.putSerializable("story", story);
     }
 
+    /* Everyting already filled in the story will be restored and the story itself too. */
     @Override
     public void onRestoreInstanceState(Bundle inState) {
         super.onRestoreInstanceState(inState);
@@ -94,13 +93,10 @@ public class SecondActivity extends AppCompatActivity {
         String text = res.getString(R.string.placeholder, placeholder);
         textPlace.setText(text);
 
-//        Bundle bundle = inState.getBundle("story");
-//        Story story = (Story) inState.getSerializable("story");
-        inState.getSerializable("story");
+        story = (Story) inState.getSerializable("story");
     }
 
-
-
+    /* The selected story will be loaded. */
     private void choosestory(int selectedStory) throws IOException {
         InputStream stream = null;
         switch (selectedStory) {
@@ -123,6 +119,7 @@ public class SecondActivity extends AppCompatActivity {
         story = new Story(stream);
     }
 
+    /* A story will be loaded at random. */
     private void getStory() throws IOException {
         InputStream stream = null;
         Random r = new Random();
@@ -149,6 +146,7 @@ public class SecondActivity extends AppCompatActivity {
     }
 
 
+    /* Passes the filled in story to the last screen where it will be displayed. */
     public void goToStory(View view) throws IOException {
         Intent intent = new Intent(this, ThirdActivity.class);
         Bundle bundle = new Bundle();
@@ -160,7 +158,8 @@ public class SecondActivity extends AppCompatActivity {
         finish();
     }
 
-
+    /* Fills the placeholder and shows how many words still need to be filled in everytime the
+     * button is clicked. If the story is completely filled in goToStory will be called. */
     public void goToNext(View view) throws IOException {
         story.fillInPlaceholder(editPlace.getText().toString());
         editPlace.setText("");
