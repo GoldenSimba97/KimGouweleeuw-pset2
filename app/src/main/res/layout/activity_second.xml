@@ -14,26 +14,35 @@
         android:layout_height="wrap_content"
         android:text="" />
 
-    <EditText
-        android:id="@+id/edit"
-        android:labelFor="@+id/edit"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text=""
-        android:hint="" />
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/ok"
-        android:onClick="goToNext" />
+        <EditText
+            android:id="@+id/edit"
+            android:labelFor="@+id/edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight=".3"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text=""
+            android:hint="" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight=".7"
+            android:text="@string/ok"
+            android:onClick="goToNext" />
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="" />
 
