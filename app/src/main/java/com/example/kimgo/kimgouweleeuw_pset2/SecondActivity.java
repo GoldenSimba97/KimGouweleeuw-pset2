@@ -161,17 +161,20 @@ public class SecondActivity extends AppCompatActivity {
     /* Fills the placeholder and shows how many words still need to be filled in everytime the
      * button is clicked. If the story is completely filled in goToStory will be called. */
     public void goToNext(View view) throws IOException {
-        story.fillInPlaceholder(editPlace.getText().toString());
-        editPlace.setText("");
-        editPlace.setHint(story.getNextPlaceholder());
+        String string = editPlace.getText().toString();
+        if (!string.isEmpty()) {
+            story.fillInPlaceholder(editPlace.getText().toString());
+            editPlace.setText("");
+            editPlace.setHint(story.getNextPlaceholder());
 
-        Resources res = getResources();
+            Resources res = getResources();
 
-        String count = res.getString(R.string.nwords, story.getPlaceholderRemainingCount());
-        wordCount.setText(count);
+            String count = res.getString(R.string.nwords, story.getPlaceholderRemainingCount());
+            wordCount.setText(count);
 
-        String text = res.getString(R.string.placeholder, story.getNextPlaceholder());
-        textPlace.setText(text);
+            String text = res.getString(R.string.placeholder, story.getNextPlaceholder());
+            textPlace.setText(text);
+        }
 
         if (story.isFilledIn()) {
             goToStory(view);
